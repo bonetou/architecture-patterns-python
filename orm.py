@@ -1,8 +1,8 @@
-from sqlalchemy import MetaData, Column, Integer, String, Date, ForeignKey
+from sqlalchemy import Table, MetaData, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import mapper, relationship
-from sqlalchemy.testing.schema import Table
 
 import model
+
 
 metadata = MetaData()
 
@@ -10,9 +10,9 @@ order_lines = Table(
     "order_lines",
     metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("order_id", String(255)),
     Column("sku", String(255)),
     Column("qty", Integer, nullable=False),
+    Column("orderid", String(255)),
 )
 
 batches = Table(

@@ -7,9 +7,9 @@ class OutOfStock(Exception):
     pass
 
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class OrderLine:
-    order_id: str
+    orderid: str
     sku: str
     qty: int
 
@@ -40,6 +40,9 @@ class Batch:
     @property
     def available_quantity(self) -> int:
         return self._purchased_quantity - self.allocated_quantity
+
+    def __repr__(self):
+        return f"<Batch {self.reference}>"
 
     def __eq__(self, other):
         if not isinstance(other, Batch):
